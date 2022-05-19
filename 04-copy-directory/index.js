@@ -1,8 +1,8 @@
 const { readdir, stat, copyFile, mkdir, unlink } = require('fs/promises');
-const path = require('path');
+const { join } = require('path');
 
-const pathToDir = __dirname + '/files';
-const pathToCopy = __dirname + '/files-copy';
+const pathToDir = join(__dirname + '/files');
+const pathToCopy = join(__dirname + '/files-copy');
 
 const readDir = async(dir) => {
     return await readdir(dir);
@@ -18,8 +18,8 @@ const readDir = async(dir) => {
         }
         const data = await readDir(pathToDir);
         for(let file of data) {
-            const pathToFile = pathToDir + '/' + file;
-            const pathToCopyFile = pathToCopy + '/' + file;
+            const pathToFile = join(pathToDir + '/' + file);
+            const pathToCopyFile = join(pathToCopy + '/' + file);
             const check = await stat(pathToFile);
             if(check.isFile()) {
                 await copyFile(pathToFile, pathToCopyFile);

@@ -18,7 +18,7 @@ const readDir = async(dir) => {
        const arrOfFiles = [];
 
        for(let i = 0; i < dataFromDir.length; i++) {
-           let pathToFile = pathToDir + "/" + dataFromDir[i];
+           let pathToFile = join(pathToDir + "/" + dataFromDir[i]);
 
            const check = await stat(pathToFile);
            const metaData = meta(pathToFile);
